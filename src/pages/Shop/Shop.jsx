@@ -9,8 +9,8 @@ const Shop = () => {
     <section className="contain">
       <SectionTitle>Shop</SectionTitle>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
-        {products.map((product) => (
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        {products?.map((product) => (
           <ProductCard key={product._id} product={product}></ProductCard>
         ))}
       </div>
