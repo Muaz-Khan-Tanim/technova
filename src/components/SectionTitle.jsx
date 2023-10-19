@@ -1,6 +1,6 @@
 const SectionTitle = ({children}) => {
     return (
-        <h2 className="text-3xl font-medium text-slate-400 text-left">
+        <h2 className="text-4xl mb-5 font-medium text-slate-400 block w-full text-left">
             {children}
         </h2>
     );

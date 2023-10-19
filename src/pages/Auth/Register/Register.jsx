@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SectionTitle from "../../../components/SectionTitle";
 import toast from "react-hot-toast";
 import { updateProfile } from "firebase/auth";
@@ -8,6 +8,9 @@ import { updateProfile } from "firebase/auth";
 const Register = () => {
   const { registerUser } = useContext(AuthContext);
   const [registering, setRegistering] = useState(false);
+  const navigate = useNavigate();
+  let location = useLocation();
+  location = location.state || "/account";
 
   const register = (e) => {
     e.preventDefault();
@@ -28,7 +31,6 @@ const Register = () => {
             photoURL: dp,
           })
             .then(() => {
-              toast.success("Registered successfully.");
               const user = { email, name, dp, cart: [] };
               fetch("http://localhost:4000/user", {
                 method: "POST",
@@ -36,13 +38,11 @@ const Register = () => {
                   "content-type": "application/json",
                 },
                 body: JSON.stringify(user),
-              })
-                .then((res) => {
-                  console.log("Returned response");
-                  res.json();
-                })
-                .then((res) => console.log(res));
-              setRegistering(false);
+              }).then(() => {
+                toast.success("Registered successfully.");
+                setRegistering(false);
+                navigate(location);
+              });
             })
             .catch((error) => {
               console.error(error);

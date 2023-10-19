@@ -1,13 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body{
-    font-family: "Space Grotesk", sans-serif;
+* {
+  transition: all 0.3s;
+}
+
+body {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+section {
+  min-height: 70vh;
+  padding: 15px 12px;
 }
 
 .contain {
-    max-width: 1152px;
-    margin: 0 auto;
+  max-width: 1152px;
+  margin: 0 auto;
 }

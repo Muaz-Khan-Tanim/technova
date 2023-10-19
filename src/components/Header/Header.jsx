@@ -103,7 +103,12 @@ const Header = () => {
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                  <img src={user?.photoURL} />
+                  <img
+                    src={
+                      user?.photoURL ||
+                      "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_1280.png"
+                    }
+                  />
                 </div>
               </label>
               <ul
