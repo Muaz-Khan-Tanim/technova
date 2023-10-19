@@ -13,6 +13,8 @@ import Error from "./pages/error/Error";
 import AuthProvider from "./providers/AuthProvider";
 import PrivateRoute from "./routes/PrivateRoute";
 import Account from "./pages/account/Account";
+import Brand from "./pages/Brand/Brand";
+import Product from "./pages/Product/Product";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        loader: () => fetch("http://localhost:4000/brands"),
       },
       {
         path: "/shop",
@@ -31,6 +34,7 @@ const router = createBrowserRouter([
             <Shop />
           </PrivateRoute>
         ),
+        loader: () => fetch("http://localhost:4000/products"),
       },
       {
         path: "/cart",
@@ -63,6 +67,30 @@ const router = createBrowserRouter([
             <Account />
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/brand/:brand",
+        element: (
+          <PrivateRoute>
+            <Brand />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:4000/brand/${params.brand}`).then((res) =>
+            res.json()
+          ),
+      },
+      {
+        path: "/product/:id",
+        element: (
+          <PrivateRoute>
+            <Product />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:4000/product/${params.id}`).then((res) =>
+            res.json()
+          ),
       },
     ],
   },

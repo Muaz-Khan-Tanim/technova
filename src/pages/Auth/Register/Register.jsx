@@ -69,6 +69,7 @@ const Register = () => {
             <span className="label-text text-lg">Name</span>
           </label>
           <input
+          autoComplete="true"
             type="text"
             placeholder="Name"
             name="name"
@@ -82,6 +83,7 @@ const Register = () => {
             <span className="label-text text-lg">Email</span>
           </label>
           <input
+          autoComplete="true"
             type="email"
             placeholder="Email"
             name="email"
@@ -95,6 +97,7 @@ const Register = () => {
             <span className="label-text text-lg">Profile Picture URL</span>
           </label>
           <input
+          autoComplete="true"
             type="text"
             placeholder="DP URL (Optional)"
             name="dp"
@@ -107,6 +110,7 @@ const Register = () => {
             <span className="label-text text-lg">Password</span>
           </label>
           <input
+          autoComplete="true"
             type="password"
             placeholder="Password"
             name="password"

@@ -106,6 +106,10 @@ const AddProduct = () => {
             <option value="computer">Computer</option>
             <option value="headphone">Headphone</option>
             <option value="tv">Telivision</option>
+            <option value="watch">Watch</option>
+            <option value="camera">Camera</option>
+            <option value="ai">AI</option>
+            <option value="electronic">Electronic</option>
           </select>
         </div>
         {/* Input */}

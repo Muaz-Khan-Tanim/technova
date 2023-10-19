@@ -44,6 +44,7 @@ const Login = () => {
             <span className="label-text text-lg">Email</span>
           </label>
           <input
+            autoComplete="true"
             type="email"
             placeholder="Email"
             name="email"
@@ -55,6 +56,7 @@ const Login = () => {
             <span className="label-text text-lg">Password</span>
           </label>
           <input
+            autoComplete="true"
             type="password"
             placeholder="Password"
             name="password"
