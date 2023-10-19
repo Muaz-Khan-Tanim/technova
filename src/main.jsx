@@ -12,6 +12,7 @@ import AddProduct from "./pages/AddProduct/AddProduct.jsx";
 import Error from "./pages/error/Error";
 import AuthProvider from "./providers/AuthProvider";
 import PrivateRoute from "./routes/PrivateRoute";
+import Account from "./pages/account/Account";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AddProduct />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/account",
+        element: (
+          <PrivateRoute>
+            <Account />
           </PrivateRoute>
         ),
       },

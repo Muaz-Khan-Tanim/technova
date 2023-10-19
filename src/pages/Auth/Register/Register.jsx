@@ -29,6 +29,19 @@ const Register = () => {
           })
             .then(() => {
               toast.success("Registered successfully.");
+              const user = { email, name, dp, cart: [] };
+              fetch("http://localhost:4000/user", {
+                method: "POST",
+                headers: {
+                  "content-type": "application/json",
+                },
+                body: JSON.stringify(user),
+              })
+                .then((res) => {
+                  console.log("Returned response");
+                  res.json();
+                })
+                .then((res) => console.log(res));
               setRegistering(false);
             })
             .catch((error) => {
