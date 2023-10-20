@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const CartCard = ({ product, products, setProducts }) => {
-  const { removeFromCart } = useContext(AuthContext);
+  const { darkTheme, removeFromCart } = useContext(AuthContext);
   const { _id, image, name, brand, type, price } = product;
 
   const remove = () => {
@@ -20,7 +20,11 @@ const CartCard = ({ product, products, setProducts }) => {
           className="rounded-2xl w-full aspect-square object-contain"
         />
       </div>
-      <div className="col-span-3 text-slate-400 flex flex-col gap-3 items-start text-base">
+      <div
+        className={`col-span-3 ${
+          darkTheme ? "text-slate-400" : "text-slate-800"
+        } flex flex-col gap-3 items-start text-base`}
+      >
         <h3 className="text-xl">{name}</h3>
         <div className="w-full flex flex-row justify-between items-center gap-5">
           <div className="flex flex-col gap-2">

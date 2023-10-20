@@ -4,17 +4,21 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const ProductCard = ({ product }) => {
-  const { addToCart } = useContext(AuthContext);
+  const { darkTheme, addToCart } = useContext(AuthContext);
   const { _id, image, name, brand, type, price, rating } = product;
 
   return (
-    <div className="w-full rounded-xl shadow-lg p-3 overflow-hidden border-2 border-neutral-500 flex flex-col gap-4 text-base">
+    <div
+      className={`w-full max-w-sm mx-auto rounded-xl shadow-lg p-3 overflow-hidden border-2 border-neutral-500 flex flex-col gap-4 text-base ${
+        darkTheme ? "text-slate-400" : "text-slate-800"
+      }`}
+    >
       <img
         src={image}
         alt=""
         className="w-full aspect-video object-contain rounded-lg"
       />
-      <h3 className="text-xl font-regular text-slate-400">{name}</h3>
+      <h3 className="text-xl font-regular">{name}</h3>
       <p>Brand: {brand}</p>
       <p>
         Category: <span className="badge capitalize">{type}</span>

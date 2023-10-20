@@ -5,10 +5,14 @@ import { AuthContext } from "../../providers/AuthProvider";
 const Product = () => {
   const importedProduct = useLoaderData();
   const product = importedProduct[0];
-  const { addToCart } = useContext(AuthContext);
+  const { addToCart, darkTheme } = useContext(AuthContext);
 
   return (
-    <section className="contain grid md:grid-cols-2 gap-6 items-center">
+    <section
+      className={`contain mt grid md:grid-cols-2 gap-6 items-center ${
+        darkTheme ? "bg-base-100 text-slate-400" : "bg-slate-200 text-slate-800"
+      }`}
+    >
       <div className="w-full h-full flex flex-col justify-center items-center">
         <img
           src={product?.image}
@@ -16,11 +20,17 @@ const Product = () => {
           className="w-full max-w-[300px] block mx-auto"
         />
       </div>
-      <div className="w-full flex flex-col gap-3 items-left text-slate-200 font-regular text-lg">
+      <div
+        className={`w-full flex flex-col gap-3 items-left ${
+          darkTheme ? "text-slate-400" : "text-slate-800"
+        } font-regular text-lg`}
+      >
         <h1 className="text-3xl font-medium">{product?.name}</h1>
         <span className="badge badge-primary capitalize">{product?.type}</span>
         <p>Brand: {product?.brand}</p>
-        <p className="text-slate-300">{product?.shortDescription}</p>
+        <p className={`${darkTheme ? "text-slate-500" : "text-slate-600"}`}>
+          {product?.shortDescription}
+        </p>
         <p>Rating: {product?.rating}</p>
         <p>Price: ${product?.price}.00</p>
         <button

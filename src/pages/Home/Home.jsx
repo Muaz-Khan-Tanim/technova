@@ -1,11 +1,13 @@
 import { Link, useLoaderData } from "react-router-dom";
 import SectionTitle from "../../components/SectionTitle";
 import BrandCard from "../../components/BrandCard/BrandCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { FaArrowRight } from "react-icons/fa";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Home = () => {
+  const { darkTheme } = useContext(AuthContext);
   const brands = useLoaderData();
   const [phones, setPhones] = useState([]);
   const [watches, setWatches] = useState([]);
@@ -21,8 +23,12 @@ const Home = () => {
   }, []);
 
   return (
-    <main>
-      <div className="w-full">
+    <main
+      className={`${
+        darkTheme ? "bg-base-100 text-slate-400" : "bg-slate-200 text-slate-800"
+      }`}
+    >
+      <div className="w-full mt">
         <img
           src="https://i0.wp.com/www.applestore.pk/wp-content/uploads/2020/03/iPhone-11-Pro-Inner-Banner-1920-X-710-Website.jpg?ssl=1"
           alt=""
@@ -41,7 +47,7 @@ const Home = () => {
 
       <section className="contain py-10">
         <SectionTitle>Phones</SectionTitle>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
           {phones?.map((product) => (
             <ProductCard key={product._id} product={product}></ProductCard>
           ))}
@@ -56,7 +62,7 @@ const Home = () => {
 
       <section className="contain py-10">
         <SectionTitle>Watches</SectionTitle>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
           {watches?.map((product) => (
             <ProductCard key={product._id} product={product}></ProductCard>
           ))}

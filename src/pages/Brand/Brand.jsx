@@ -32,7 +32,7 @@ const Brand = () => {
   };
 
   return (
-    <section className="p-0">
+    <section className="p-0 mt">
       <div className="grid grid-cols-4 bg-white bg-opacity-100 p-0 items-center">
         <div className="w-full">
           <img

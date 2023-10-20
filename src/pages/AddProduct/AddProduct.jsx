@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import SectionTitle from "../../components/SectionTitle";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const AddProduct = () => {
+  const { darkTheme } = useContext(AuthContext);
   const [adding, setAdding] = useState(false);
 
   const addProduct = (e) => {
@@ -50,7 +52,11 @@ const AddProduct = () => {
   };
 
   return (
-    <section className="contain">
+    <section
+      className={`contain mt ${
+        darkTheme ? "bg-base-100 text-slate-400" : "bg-slate-200 text-slate-800"
+      }`}
+    >
       <SectionTitle>Add a product</SectionTitle>
       <form
         onSubmit={addProduct}
@@ -58,49 +64,81 @@ const AddProduct = () => {
       >
         {/* Input */}
         <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text text-lg">Image</span>
+          <label className={`label`}>
+            <span
+              className={`label-text text-lg ${
+                darkTheme ? "text-slate-400" : "text-slate-800"
+              }`}
+            >
+              Image
+            </span>
           </label>
           <input
             type="text"
             placeholder="Image URL"
             name="image"
-            className="input input-bordered w-full text-lg"
+            className={`input input-bordered w-full text-lg ${
+              darkTheme ? "bg-slate-800" : "bg-slate-200"
+            }`}
           />
         </div>
         {/* Input */}
         <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text text-lg">Name</span>
+          <label className={`label`}>
+            <span
+              className={`label-text text-lg ${
+                darkTheme ? "text-slate-400" : "text-slate-800"
+              }`}
+            >
+              Name
+            </span>
           </label>
           <input
             type="text"
             placeholder="Product Name"
             name="name"
-            className="input input-bordered w-full text-lg"
+            className={`input input-bordered w-full text-lg ${
+              darkTheme ? "bg-slate-800" : "bg-slate-200"
+            }`}
           />
         </div>
         {/* Input */}
         <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text text-lg">Brand</span>
+          <label className={`label`}>
+            <span
+              className={`label-text text-lg ${
+                darkTheme ? "text-slate-400" : "text-slate-800"
+              }`}
+            >
+              Brand
+            </span>
           </label>
           <input
             type="text"
             placeholder="Brand Name"
             name="brand"
-            className="input input-bordered w-full text-lg"
+            className={`input input-bordered w-full text-lg ${
+              darkTheme ? "bg-slate-800" : "bg-slate-200"
+            }`}
           />
         </div>
         {/* Input */}
         <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text text-lg">Product Type</span>
+          <label className={`label`}>
+            <span
+              className={`label-text text-lg ${
+                darkTheme ? "text-slate-400" : "text-slate-800"
+              }`}
+            >
+              Product Type
+            </span>
           </label>
           <select
             defaultValue="phone"
             name="type"
-            className="select select-bordered w-full text-lg"
+            className={`select select-bordered w-full text-lg ${
+              darkTheme ? "bg-slate-800" : "bg-slate-200"
+            }`}
           >
             <option value="phone">Phone</option>
             <option value="computer">Computer</option>
@@ -114,35 +152,59 @@ const AddProduct = () => {
         </div>
         {/* Input */}
         <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text text-lg">Price</span>
+          <label className={`label`}>
+            <span
+              className={`label-text text-lg ${
+                darkTheme ? "text-slate-400" : "text-slate-800"
+              }`}
+            >
+              Price
+            </span>
           </label>
           <input
             type="number"
             placeholder="Product price"
             name="price"
-            className="input input-bordered w-full text-lg"
+            className={`input input-bordered w-full text-lg ${
+              darkTheme ? "bg-slate-800" : "bg-slate-200"
+            }`}
           />
         </div>
         {/* Input */}
         <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text text-lg">Rating</span>
+          <label className={`label`}>
+            <span
+              className={`label-text text-lg ${
+                darkTheme ? "text-slate-400" : "text-slate-800"
+              }`}
+            >
+              Rating
+            </span>
           </label>
           <input
             type="number"
             placeholder="Product rating"
             name="rating"
-            className="input input-bordered w-full text-lg"
+            className={`input input-bordered w-full text-lg ${
+              darkTheme ? "bg-slate-800" : "bg-slate-200"
+            }`}
           />
         </div>
         {/* Input */}
         <div className="form-control w-full">
-          <label className="label">
-            <span className="label-text text-lg">Short Description</span>
+          <label className={`label`}>
+            <span
+              className={`label-text text-lg ${
+                darkTheme ? "text-slate-400" : "text-slate-800"
+              }`}
+            >
+              Short Description
+            </span>
           </label>
           <textarea
-            className="textarea textarea-bordered w-full text-lg"
+            className={`textarea textarea-bordered w-full text-lg ${
+              darkTheme ? "bg-slate-800" : "bg-slate-200"
+            }`}
             placeholder="A little bit about the product..."
             name="shortDescription"
           ></textarea>

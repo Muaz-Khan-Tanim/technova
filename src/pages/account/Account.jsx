@@ -2,12 +2,11 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
 import { auth } from "../../firebase/firebase";
-import { useNavigate } from "react-router-dom";
 import { updateProfile } from "firebase/auth";
 import SectionTitle from "../../components/SectionTitle";
 
 const Account = () => {
-  const { user, updateCurrentUser, updateUser } = useContext(AuthContext);
+  const { user, updateCurrentUser, darkTheme } = useContext(AuthContext);
   const [editing, setEditing] = useState(false);
 
   const update = (e) => {
@@ -44,7 +43,11 @@ const Account = () => {
   };
 
   return (
-    <section className="contain py-4 px-3 flex flex-col items-center gap-4 text-slate-400 text-lg">
+    <section
+      className={`contain mt py-4 px-3 flex flex-col items-center gap-4 text-slate-400 text-lg ${
+        darkTheme ? "bg-base-100 text-slate-400" : "bg-slate-200 text-slate-800"
+      }`}
+    >
       <SectionTitle>Account</SectionTitle>
       <form onSubmit={update} className="w-full max-w-2xl">
         <div className="flex flex-col sm:flex-row gap-5 items-center justify-center">
@@ -67,7 +70,9 @@ const Account = () => {
                 name="name"
                 defaultValue={user?.displayName}
                 disabled={!editing}
-                className={`w-full p-1 rounded-md text-slate-300 bg-transparent outline-none border-2 focus:border-slate-300 ${
+                className={`w-full p-1 rounded-md ${
+                  darkTheme ? "text-slate-300" : "text-slate-800"
+                } bg-transparent outline-none border-2 focus:border-slate-300 ${
                   editing ? "border-slate-500" : "border-transparent"
                 }`}
               />
@@ -81,7 +86,9 @@ const Account = () => {
                 name="email"
                 defaultValue={user?.email}
                 disabled
-                className={`w-full p-1 rounded-md text-slate-400 bg-transparent outline-none border-2 focus:border-slate-300 border-transparent`}
+                className={`w-full p-1 rounded-md  ${
+                  darkTheme ? "text-slate-400" : "text-slate-600"
+                } bg-transparent outline-none border-2 focus:border-slate-300 border-transparent`}
               />
             </div>
             {/* Input Div */}
@@ -93,7 +100,9 @@ const Account = () => {
                 name="dp"
                 defaultValue={user?.photoURL}
                 disabled={!editing}
-                className={`w-full p-1 rounded-md text-slate-300 bg-transparent outline-none border-2 focus:border-slate-300 ${
+                className={`w-full p-1 rounded-md  ${
+                  darkTheme ? "text-slate-300" : "text-slate-800"
+                } bg-transparent outline-none border-2 focus:border-slate-300 ${
                   editing ? "border-slate-500" : "border-transparent"
                 }`}
               />

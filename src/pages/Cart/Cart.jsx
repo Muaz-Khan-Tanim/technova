@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
 const Cart = () => {
-  const { user } = useContext(AuthContext);
+  const { darkTheme, user } = useContext(AuthContext);
   const userEmail = user?.email;
   const [loading, setLoading] = useState(true);
   let cart = useLoaderData();
@@ -63,7 +63,11 @@ const Cart = () => {
   };
 
   return (
-    <section className="contain">
+    <section
+      className={`contain mt ${
+        darkTheme ? "bg-base-100 text-slate-400" : "bg-slate-200 text-slate-800"
+      }`}
+    >
       <SectionTitle>Cart</SectionTitle>
       {products?.length > 0 && (
         <p className="text-lg font-medium text-blue-500 block mb-4">
