@@ -4,9 +4,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import SectionTitle from "../../../components/SectionTitle";
 import toast from "react-hot-toast";
 import { updateProfile } from "firebase/auth";
+import { FaGoogle } from "react-icons/fa";
 
 const Register = () => {
-  const { registerUser } = useContext(AuthContext);
+  const { registerUser, googleLogin } = useContext(AuthContext);
   const [registering, setRegistering] = useState(false);
   const navigate = useNavigate();
   let location = useLocation();
@@ -23,10 +24,13 @@ const Register = () => {
 
     if (password.length < 6) {
       toast("Password must contain at least 6 characters.");
-    } else if (/[A-Z]/.test(password)) {
+      setRegistering(false);
+    } else if (!/[A-Z]/.test(password)) {
       toast("Password must contain a capital letter.");
-    } else if (/[^a-zA-Z0-9]/.text(password)) {
+      setRegistering(false);
+    } else if (!/[^a-zA-Z0-9]/.test(password)) {
       toast("Password must contain a special character.");
+      setRegistering(false);
     } else {
       console.log("Registering...");
       registerUser(email, password)
@@ -137,6 +141,24 @@ const Register = () => {
             Login
           </Link>
         </p>
+
+        <button
+          onClick={() => {
+            googleLogin()
+              .then(() => {
+                toast.success("Logged in.");
+                navigate(location);
+              })
+              .catch((error) => {
+                console.error(error);
+                toast.error(error.message);
+              });
+          }}
+          type="button"
+          className="btn btn-outline w-full my-2 flex flex-row gap-2 items-center justify-center text-lg text-slate-400"
+        >
+          <FaGoogle /> Sign in with Google
+        </button>
       </form>
     </div>
   );

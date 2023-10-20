@@ -3,9 +3,10 @@ import SectionTitle from "../../../components/SectionTitle";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import toast from "react-hot-toast";
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
-  const { loginUser } = useContext(AuthContext);
+  const { loginUser, googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const [loggingIn, setLoggingIn] = useState(false);
   let location = useLocation();
@@ -76,6 +77,23 @@ const Login = () => {
             Register
           </Link>
         </p>
+        <button
+          onClick={() => {
+            googleLogin()
+              .then(() => {
+                toast.success("Logged in.");
+                navigate(location);
+              })
+              .catch((error) => {
+                console.error(error);
+                toast.error(error.message);
+              });
+          }}
+          type="button"
+          className="btn btn-outline w-full my-2 flex flex-row gap-2 items-center justify-center text-lg text-slate-400"
+        >
+          <FaGoogle /> Sign in with Google
+        </button>
       </form>
     </div>
   );
