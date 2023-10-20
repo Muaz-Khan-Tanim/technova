@@ -15,6 +15,8 @@ import PrivateRoute from "./routes/PrivateRoute";
 import Account from "./pages/account/Account";
 import Brand from "./pages/Brand/Brand";
 import Product from "./pages/Product/Product";
+import EditProduct from "./pages/EditProduct/EditProduct";
+import { auth } from "./firebase/firebase";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,8 @@ const router = createBrowserRouter([
             <Cart />
           </PrivateRoute>
         ),
+        loader: () =>
+          fetch(`http://localhost:4000/cart/${auth?.currentUser?.email}`),
       },
       {
         path: "/login",
@@ -85,6 +89,18 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Product />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:4000/product/${params.id}`).then((res) =>
+            res.json()
+          ),
+      },
+      {
+        path: "/edit-product/:id",
+        element: (
+          <PrivateRoute>
+            <EditProduct />
           </PrivateRoute>
         ),
         loader: ({ params }) =>

@@ -1,10 +1,11 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./brand.css";
 import Slider from "react-slick";
+import NoProductsGif from "../../assets/gifs/no_products.gif";
 
 const Brand = () => {
   const brand = useLoaderData();
@@ -54,11 +55,27 @@ const Brand = () => {
       </div>
 
       {/* Products */}
-      <div className="contain p-5 grid grid-cols-2 md:grid-cols-3 gap-5">
-        {products?.map((product) => (
-          <ProductCard key={product._id} product={product}></ProductCard>
-        ))}
-      </div>
+      {products?.length > 0 ? (
+        <div className="contain p-5 grid grid-cols-2 md:grid-cols-3 gap-5">
+          {products?.map((product) => (
+            <ProductCard key={product._id} product={product}></ProductCard>
+          ))}
+        </div>
+      ) : (
+        <div className="contain flex flex-col justify-center items-center gap-5 min-h-[50vh] text-slate-400 text-lg text-center">
+          <img
+            src={NoProductsGif}
+            alt=""
+            className="w-full max-w-[170px] aspect-square object-cover rounded-full"
+          />
+          <p>
+            Sorry, currently there are no available products of this brand.
+            <Link to="/shop" className="text-blue-600 block">
+              Check out products of other brands?
+            </Link>
+          </p>
+        </div>
+      )}
     </section>
   );
 };

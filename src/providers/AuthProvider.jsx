@@ -3,7 +3,6 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
-  updateProfile,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase";
@@ -35,6 +34,28 @@ const AuthProvider = ({ children }) => {
     setUser(user);
   };
 
+  const addToCart = (id) => {
+    const productId = id;
+    const info = {
+      userEmail: user.email,
+      id: productId,
+    };
+    fetch(`http://localhost:4000/cart`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(info),
+    })
+      .then(() => {
+        toast.success("Product added to cart.");
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.message);
+      });
+  };
+
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
@@ -52,6 +73,7 @@ const AuthProvider = ({ children }) => {
     loginUser,
     logoutUser,
     updateCurrentUser,
+    addToCart,
   };
 
   return (
