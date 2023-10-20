@@ -65,6 +65,9 @@ const Cart = () => {
   return (
     <section className="contain">
       <SectionTitle>Cart</SectionTitle>
+      <p className="text-lg font-medium text-blue-500 block mb-4">
+        {products?.length} products in cart
+      </p>
       {loading ? (
         <div className="contain py-20 flex justify-center">
           <span className="loading loading-spinner loading-lg"></span>
@@ -76,6 +79,8 @@ const Cart = () => {
               <CartCard
                 key={product?._id}
                 product={product && product}
+                products={products}
+                setProducts={setProducts}
               ></CartCard>
             ))}
           </div>

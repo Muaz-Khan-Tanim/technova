@@ -56,6 +56,28 @@ const AuthProvider = ({ children }) => {
       });
   };
 
+  const removeFromCart = (id) => {
+    const productId = id;
+    const info = {
+      userEmail: user.email,
+      id: productId,
+    };
+    fetch(`http://localhost:4000/cart/remove`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(info),
+    })
+      .then(() => {
+        toast.success("Product removed from cart.");
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.error(error.message);
+      });
+  };
+
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
@@ -74,6 +96,7 @@ const AuthProvider = ({ children }) => {
     logoutUser,
     updateCurrentUser,
     addToCart,
+    removeFromCart,
   };
 
   return (

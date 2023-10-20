@@ -23,7 +23,12 @@ const Register = () => {
 
     if (password.length < 6) {
       toast("Password must contain at least 6 characters.");
+    } else if (/[A-Z]/.test(password)) {
+      toast("Password must contain a capital letter.");
+    } else if (/[^a-zA-Z0-9]/.text(password)) {
+      toast("Password must contain a special character.");
     } else {
+      console.log("Registering...");
       registerUser(email, password)
         .then((result) => {
           updateProfile(result.user, {
@@ -69,7 +74,7 @@ const Register = () => {
             <span className="label-text text-lg">Name</span>
           </label>
           <input
-          autoComplete="true"
+            autoComplete="true"
             type="text"
             placeholder="Name"
             name="name"
@@ -83,7 +88,7 @@ const Register = () => {
             <span className="label-text text-lg">Email</span>
           </label>
           <input
-          autoComplete="true"
+            autoComplete="true"
             type="email"
             placeholder="Email"
             name="email"
@@ -97,7 +102,7 @@ const Register = () => {
             <span className="label-text text-lg">Profile Picture URL</span>
           </label>
           <input
-          autoComplete="true"
+            autoComplete="true"
             type="text"
             placeholder="DP URL (Optional)"
             name="dp"
@@ -110,7 +115,7 @@ const Register = () => {
             <span className="label-text text-lg">Password</span>
           </label>
           <input
-          autoComplete="true"
+            autoComplete="true"
             type="password"
             placeholder="Password"
             name="password"
