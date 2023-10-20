@@ -29,7 +29,11 @@ const Header = () => {
   ];
 
   return (
-    <div className="fixed w-full top-0 z-[999] shadow-lg">
+    <div
+      className={`fixed w-full top-0 z-[999] shadow-lg ${
+        darkTheme ? "bg-base-100 text-slate-400" : "bg-slate-200 text-slate-800"
+      }`}
+    >
       <div
         className={`contain navbar ${
           darkTheme

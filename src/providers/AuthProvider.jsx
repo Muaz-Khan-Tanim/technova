@@ -17,6 +17,14 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [darkTheme, setDarkTheme] = useState(true);
 
+  useEffect(() => {
+    if (darkTheme) {
+      document.getElementById("root").classList.remove("light");
+    } else {
+      document.getElementById("root").classList.add("light");
+    }
+  }, [darkTheme]);
+
   const registerUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };

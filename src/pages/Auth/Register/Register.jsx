@@ -7,7 +7,7 @@ import { updateProfile } from "firebase/auth";
 import { FaGoogle } from "react-icons/fa";
 
 const Register = () => {
-  const { registerUser, googleLogin } = useContext(AuthContext);
+  const { registerUser, googleLogin, darkTheme } = useContext(AuthContext);
   const [registering, setRegistering] = useState(false);
   const navigate = useNavigate();
   let location = useLocation();
@@ -66,7 +66,11 @@ const Register = () => {
   };
 
   return (
-    <div className="contain py-10 min-h-[70vh] flex flex-col items-center justify-center">
+    <div
+      className={`contain mt py-10 min-h-[70vh] flex flex-col items-center justify-center ${
+        darkTheme ? "bg-base-100 text-slate-400" : "bg-slate-200 text-slate-800"
+      }`}
+    >
       <form
         onSubmit={register}
         className="w-full max-w-md max-auto flex flex-col gap-3 p-5 rounded-lg shadow-lg text-lg"
@@ -83,7 +87,11 @@ const Register = () => {
             placeholder="Name"
             name="name"
             required
-            className="input input-bordered w-full text-lg"
+            className={`input input-bordered w-full text-lg ${
+              darkTheme
+                ? "bg-base-100 text-slate-400"
+                : "bg-slate-200 text-slate-800"
+            }`}
           />
         </div>
 
@@ -97,7 +105,11 @@ const Register = () => {
             placeholder="Email"
             name="email"
             required
-            className="input input-bordered w-full text-lg"
+            className={`input input-bordered w-full text-lg ${
+              darkTheme
+                ? "bg-base-100 text-slate-400"
+                : "bg-slate-200 text-slate-800"
+            }`}
           />
         </div>
 
@@ -110,7 +122,11 @@ const Register = () => {
             type="text"
             placeholder="DP URL (Optional)"
             name="dp"
-            className="input input-bordered w-full text-lg"
+            className={`input input-bordered w-full text-lg ${
+              darkTheme
+                ? "bg-base-100 text-slate-400"
+                : "bg-slate-200 text-slate-800"
+            }`}
           />
         </div>
 
@@ -124,7 +140,11 @@ const Register = () => {
             placeholder="Password"
             name="password"
             required
-            className="input input-bordered w-full text-lg"
+            className={`input input-bordered w-full text-lg ${
+              darkTheme
+                ? "bg-base-100 text-slate-400"
+                : "bg-slate-200 text-slate-800"
+            }`}
           />
         </div>
 
@@ -137,7 +157,10 @@ const Register = () => {
         </button>
         <p className="text-lg">
           Already have an account?{" "}
-          <Link to="/login" className="text-slate-300">
+          <Link
+            to="/register"
+            className={`${darkTheme ? "text-slate-300" : "text-slate-900"}`}
+          >
             Login
           </Link>
         </p>
@@ -155,7 +178,9 @@ const Register = () => {
               });
           }}
           type="button"
-          className="btn btn-outline w-full my-2 flex flex-row gap-2 items-center justify-center text-lg text-slate-400"
+          className={`btn btn-outline w-full my-2 flex flex-row gap-2 items-center justify-center text-lg ${
+            darkTheme ? "text-slate-300" : "text-slate-900"
+          }`}
         >
           <FaGoogle /> Sign in with Google
         </button>

@@ -11,6 +11,10 @@ body {
   font-family: "Space Grotesk", sans-serif;
 }
 
+#root.light {
+  background: #e2e8f0;
+}
+
 section {
   min-height: 70vh;
   padding: 15px 12px;
