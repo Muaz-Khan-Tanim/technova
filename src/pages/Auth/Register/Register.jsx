@@ -158,7 +158,7 @@ const Register = () => {
         <p className="text-lg">
           Already have an account?{" "}
           <Link
-            to="/register"
+            to="/login"
             className={`${darkTheme ? "text-slate-300" : "text-slate-900"}`}
           >
             Login
